@@ -36,13 +36,19 @@ def check_for_3(count): # 6
         if count[num] == 3:
             return data_check_for_3[num]
 
-def che_for_1(count):
+def check_for_1(count):
     for num in count:
-        if count[num] == 1:
+        if count[num] == 1 or count[num] == 2:
             if num == 1:
-                return 100
+                return 100 * count[num]
             elif num == 5:
-                return 50
+                return 50 * count[num]
             else:
                 return None
 
+def check_if_there_is_a_combination(lst, count):
+    if any([check_1_2_3_4_5_6(lst), check_3_pair(lst), check_all_of_a_kind(lst), check_for_5(count), check_for_4(count),
+            check_for_3(count), check_for_1(count)]):
+        return "есть контакт"
+    else:
+        return "иди нахуй"
