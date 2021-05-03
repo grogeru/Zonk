@@ -46,7 +46,9 @@ def check_for_1(count):
             else:
                 return None
 
-def check_if_there_is_a_combination(lst, count):
+def check_if_there_is_a_combination(smth):
+    lst = sorted(smth.copy())
+    count= Counter(lst)
     if any([check_1_2_3_4_5_6(lst), check_3_pair(lst), check_all_of_a_kind(lst), check_for_5(count), check_for_4(count),
             check_for_3(count), check_for_1(count)]):
         return "есть контакт"
