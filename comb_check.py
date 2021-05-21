@@ -8,9 +8,6 @@ from collections import Counter
 #
 #
 
-
-
-
 data_check_all_of_a_kind = {1: 6000, 2: 1600, 3: 2400, 4: 3200, 5: 4000, 6: 4800}
 data_check_for_5 = {1: 3000, 2: 800, 3: 1200, 4: 1600, 5: 2000, 6: 2400}
 data_check_for_4 = {1: 2000, 2: 400, 3: 600, 4: 800, 5: 1000, 6: 1200}
@@ -23,10 +20,12 @@ def check_1_2_3_4_5_6(lst, count):
         count.clear()
         return 1000
 
+
 def check_3_pair(lst, count):
     if len(set(lst)) == 3 and lst[0] == lst[1] and lst[2] == lst[3] and lst[4] == lst[5]: # 4
         count.clear()
         return 750
+
 
 def check_all_of_a_kind(lst, count): # 1
     if len(set(lst)) == 1:
@@ -40,11 +39,13 @@ def check_for_5(count):
             del count[num]
             return data_check_for_5[num]
 
+
 def check_for_4(count): # count = Counter(lst) # 6
     for num in count:
         if count[num] == 4:
             del count[num]
             return data_check_for_4[num]
+
 
 def check_for_3(count): # сделать сумму всех, принудительно пройдясь по всем элементам Counter
     del_list = []
@@ -56,6 +57,7 @@ def check_for_3(count): # сделать сумму всех, принудите
     for num in del_list:
         del count[num]
     return sum_for_return
+
 
 def check_for_1(count):
     del_list = []
@@ -72,11 +74,12 @@ def check_for_1(count):
         del count[num]
     return return_sum
 
+
 def check_if_there_is_a_combination(smth): # smth - откопированный результат бросков кубиков
     lst = sorted(smth.copy())
     count = Counter(lst)
-    res = [check_1_2_3_4_5_6(lst, count), check_3_pair(lst, count), check_all_of_a_kind(lst, count), check_for_5(count), check_for_4(count),
-            check_for_3(count), check_for_1(count)]
+    res = [check_1_2_3_4_5_6(lst, count), check_3_pair(lst, count), check_all_of_a_kind(lst, count), check_for_5(count),
+           check_for_4(count), check_for_3(count), check_for_1(count)]
     if any(res): # нашлась хоть какая-нибудь комбинация
         if count: # count остался/не остался пустым
             return sum(filter(lambda x: x, res)), False # в текущем варианте кубики отложить нельзя
